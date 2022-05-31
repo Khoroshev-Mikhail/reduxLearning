@@ -7,8 +7,8 @@ class Component_1 extends React.Component{
     render(){
         return (
             <>  
-                <p>{this.props.value_1}sss</p>
-                <input type={'button'} onClick={this.handler.bind(this)}></input>
+                <p>{this.props.value_1 ? "On" : "Off"}</p>
+                <input type={'button'} onClick={this.handler.bind(this)} value="button"></input>
             </>
         )
     }
