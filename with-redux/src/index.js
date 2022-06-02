@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import store from './store/store';
 import { Provider } from 'react-redux';
-import Component_1_Wrapper from './component/component_1_Wrapper'
+import Component_1_Wrapper from './components/Component_1/Component_1_Wrapper';
+
 
 store.subscribe(() => console.info(store.getState()))
 const root = ReactDOM.createRoot(document.getElementById('root'));

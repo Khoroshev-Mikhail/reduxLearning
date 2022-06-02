@@ -1,0 +1,31 @@
+.glade {
+    width: 600px;
+    height: 600px;
+    margin: 0px auto;
+    border-radius: 50px;
+    background: #EEBE76;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding-top: 50px;
+}
+.pile{
+    width: 170px;
+    height: 170px;
+    background: #eeeeee;
+    background: url('./images/dirt.png') no-repeat;
+    background-position: right bottom;
+    z-index: 5;
+}
+.mole{
+    position: relative;
+    z-index: 3;
+    margin-left: 50px;
+    width: 98px;
+    height: 137px;
+    background: url('./images/mole.png') no-repeat;
+    background-position: right bottom;
+}
+.hidden {
+    display: none;
+}
