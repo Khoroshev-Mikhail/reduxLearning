@@ -25,7 +25,11 @@
     height: 137px;
     background: url('./images/mole.png') no-repeat;
     background-position: right bottom;
+    transform: translateY(0px);
+    transition: 1s;
 }
 .hidden {
-    display: none;
+    transform: translateY(137px);
+    transition: 0.3s;
 }
+
