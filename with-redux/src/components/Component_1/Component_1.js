@@ -1,54 +1,73 @@
 import React from "react";
 import './Component_1.css'
+import dirt from './images/dirt.png'
+import mole from './images/mole.png'
 
 export default class Component_1 extends React.Component{
     constructor(props){
         super(props)
         this.state ={
-            whoIsVisible: 2,
-            countSuccefulClick: 0,
+            idsMoles: [1,2,3,4,5,6],
+            whoIsVisible: false,
+            isFirstClick: true,
+            score: 0,
+            maxScore: 3,
         }
-        this.arr = [1,2,3,4,5,6]
     }
-    handler(e){
-        const id = e.target.id
-        this.setState(() => {
-            return { whoIsVisible: false}
+    click(){
+        clearTimeout(this.crawlOutMoleTimeout)  
+        clearTimeout(this.moleHideTimeOut)   
+        this.setState(({score}) => {
+            if(this.state.isFirstClick){          
+                if(score + 1 < this.state.maxScore){
+                    this.crawlOutMole()
+                } 
+                return { 
+                    whoIsVisible: false, 
+                    isFirstClick: false, 
+                    score: (score + 1), 
+                }
+            }
         })
-        this.setState(({countSuccefulClick}) => {
-            return { countSuccefulClick: (countSuccefulClick + 1)    }
-        })
-        if(this.state.countSuccefulClick > 2){
-            alert('Congrats, U are winner!')
-        } else{
-            this.crawlOutMole.bind(this)()
-        }
     }
     crawlOutMole(){
-        this.setState((state) => {
-            return {whoIsVisible: false}
-        })
-        setTimeout(()=> {
-            this.setState((whoIsVisible) => {
-                return {whoIsVisible : Math.round(Math.random() * 5 + 1)}
+        this.crawlOutMoleTimeout = setTimeout(()=>{
+            this.setState(() => {
+                return {isFirstClick: true, whoIsVisible : Math.round(Math.random() * 5 + 1)}
             })
-        }, (Math.random() * 1000 + 1000))
+            this.moleHide()
+        }, Math.random() * 1000 + 1000)
     }
-    
-    render(){
-        if(this.state.whoIsVisible){
-            setTimeout(this.crawlOutMole.bind(this), (Math.random() * 1000 + 2000))
+    moleHide(){
+        this.moleHideTimeOut = setTimeout(()=>{
+            this.setState(() => {
+                return { whoIsVisible: false}
+            })
+            this.crawlOutMole()
+        }, Math.random() * 1000 + 700)
+    }
+    componentDidMount(){
+        if(this.state.score <= this.state.maxScore){
+            this.crawlOutMole()
         }
+    }
+    render(){
         return (
+            <>
+            <div className="score">
+                <h1>{this.state.score  === this.state.maxScore ? "Congrats! U are winner!" : `Score: ${this.state.score} / ${this.state.maxScore}`}</h1>
+            </div>
             <div className="glade">
-                {this.arr.map(id => {
+                {this.state.idsMoles.map(id => {
                     return (
-                    <div className="pile">
-                        <div id={id} key={id} className={`mole ${this.state.whoIsVisible !== id ? 'hidden' : ''}`} onClick={this.handler.bind(this)}></div>
+                    <div className="pile" key={id} >
+                        <img src={dirt} className={'dirt'}/>
+                        <img src={mole} className={`mole ${this.state.whoIsVisible !== id ? 'hidden' : ''}`} onClick={this.click.bind(this)}/>
                     </div>
                     )
                 })}
             </div>
+            </>
         )
     }
 }

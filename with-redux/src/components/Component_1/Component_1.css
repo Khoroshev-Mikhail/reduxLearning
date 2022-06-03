@@ -1,3 +1,8 @@
+.score{
+    margin: 0px auto;
+    width: 600px;
+    text-align: center;
+}
 .glade {
     width: 600px;
     height: 600px;
@@ -12,24 +17,45 @@
 .pile{
     width: 170px;
     height: 170px;
-    background: #eeeeee;
-    background: url('./images/dirt.png') no-repeat;
-    background-position: right bottom;
-    z-index: 5;
+    overflow: hidden;
 }
 .mole{
+    cursor: pointer;
     position: relative;
-    z-index: 3;
-    margin-left: 50px;
+    left: 40px;
+    bottom: 20px;
     width: 98px;
     height: 137px;
     background: url('./images/mole.png') no-repeat;
     background-position: right bottom;
     transform: translateY(0px);
-    transition: 1s;
+    transition: 0.7s;
 }
 .hidden {
-    transform: translateY(137px);
+    transform: translateY(190px);
     transition: 0.3s;
 }
+.dirt{
+    position: relative;
+    top: 124px;
+    left: 10px;
+    z-index: 1;
+    
+}
+
+.blink{
+    animation-duration: 400ms;
+    animation-name: blink;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+}
+@keyframes blink {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 
