@@ -29,11 +29,11 @@
     background: url('./images/mole.png') no-repeat;
     background-position: right bottom;
     transform: translateY(0px);
-    transition: 0.7s;
+    transition: 1s;
 }
 .hidden {
     transform: translateY(190px);
-    transition: 0.3s;
+    transition: 1s;
 }
 .dirt{
     position: relative;
